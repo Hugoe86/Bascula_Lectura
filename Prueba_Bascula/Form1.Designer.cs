@@ -32,16 +32,19 @@
             this.Serial_Bascula = new System.IO.Ports.SerialPort(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Lbl_Mensajes = new Telerik.WinControls.UI.RadRichTextEditor();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Table_Botones = new System.Windows.Forms.TableLayoutPanel();
-            this.Btn_Activar = new System.Windows.Forms.Button();
             this.Btn_Desactivar = new System.Windows.Forms.Button();
+            this.Btn_Activar = new System.Windows.Forms.Button();
             this.Tabla_Texto = new System.Windows.Forms.TableLayoutPanel();
             this.Txt_Datos_Bascula = new System.Windows.Forms.TextBox();
+            this.ProBar_Estatus = new Telerik.WinControls.UI.RadWaitingBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.telerikMetroBlueTheme1 = new Telerik.WinControls.Themes.TelerikMetroBlueTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Lbl_Mensajes)).BeginInit();
             this.Table_Botones.SuspendLayout();
             this.Tabla_Texto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProBar_Estatus)).BeginInit();
             this.SuspendLayout();
             // 
             // Serial_Bascula
@@ -74,17 +77,13 @@
             this.Lbl_Mensajes.CaretWidth = float.NaN;
             this.tableLayoutPanel1.SetColumnSpan(this.Lbl_Mensajes, 2);
             this.Lbl_Mensajes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Lbl_Mensajes.Enabled = false;
             this.Lbl_Mensajes.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Mensajes.Location = new System.Drawing.Point(3, 209);
             this.Lbl_Mensajes.Name = "Lbl_Mensajes";
             this.Lbl_Mensajes.SelectionFill = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(78)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.Lbl_Mensajes.Size = new System.Drawing.Size(510, 201);
             this.Lbl_Mensajes.TabIndex = 6;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Table_Botones
             // 
@@ -102,21 +101,6 @@
             this.Table_Botones.Size = new System.Drawing.Size(252, 200);
             this.Table_Botones.TabIndex = 7;
             // 
-            // Btn_Activar
-            // 
-            this.Btn_Activar.AutoSize = true;
-            this.Btn_Activar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Activar.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Activar.Image = global::Prueba_Bascula.Properties.Resources.img_vigente;
-            this.Btn_Activar.Location = new System.Drawing.Point(3, 3);
-            this.Btn_Activar.Name = "Btn_Activar";
-            this.Btn_Activar.Size = new System.Drawing.Size(246, 94);
-            this.Btn_Activar.TabIndex = 3;
-            this.Btn_Activar.Text = "Activar";
-            this.Btn_Activar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Activar.UseVisualStyleBackColor = true;
-            this.Btn_Activar.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Btn_Desactivar
             // 
             this.Btn_Desactivar.AutoSize = true;
@@ -132,12 +116,28 @@
             this.Btn_Desactivar.UseVisualStyleBackColor = true;
             this.Btn_Desactivar.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // Btn_Activar
+            // 
+            this.Btn_Activar.AutoSize = true;
+            this.Btn_Activar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Btn_Activar.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Activar.Image = global::Prueba_Bascula.Properties.Resources.img_vigente;
+            this.Btn_Activar.Location = new System.Drawing.Point(3, 3);
+            this.Btn_Activar.Name = "Btn_Activar";
+            this.Btn_Activar.Size = new System.Drawing.Size(246, 94);
+            this.Btn_Activar.TabIndex = 3;
+            this.Btn_Activar.Text = "Activar";
+            this.Btn_Activar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_Activar.UseVisualStyleBackColor = true;
+            this.Btn_Activar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Tabla_Texto
             // 
             this.Tabla_Texto.ColumnCount = 1;
             this.Tabla_Texto.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Tabla_Texto.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.Tabla_Texto.Controls.Add(this.Txt_Datos_Bascula, 0, 2);
+            this.Tabla_Texto.Controls.Add(this.ProBar_Estatus, 0, 4);
             this.Tabla_Texto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tabla_Texto.Location = new System.Drawing.Point(3, 3);
             this.Tabla_Texto.Name = "Tabla_Texto";
@@ -160,6 +160,21 @@
             this.Txt_Datos_Bascula.TabIndex = 2;
             this.Txt_Datos_Bascula.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // ProBar_Estatus
+            // 
+            this.ProBar_Estatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProBar_Estatus.Location = new System.Drawing.Point(3, 163);
+            this.ProBar_Estatus.Name = "ProBar_Estatus";
+            this.ProBar_Estatus.Size = new System.Drawing.Size(246, 34);
+            this.ProBar_Estatus.TabIndex = 3;
+            this.ProBar_Estatus.Text = "radWaitingBar1";
+            this.ProBar_Estatus.ThemeName = "TelerikMetroBlue";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +191,7 @@
             this.Table_Botones.PerformLayout();
             this.Tabla_Texto.ResumeLayout(false);
             this.Tabla_Texto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProBar_Estatus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,6 +207,8 @@
         private System.Windows.Forms.Button Btn_Activar;
         private System.Windows.Forms.TableLayoutPanel Tabla_Texto;
         private System.Windows.Forms.TextBox Txt_Datos_Bascula;
+        private Telerik.WinControls.UI.RadWaitingBar ProBar_Estatus;
+        private Telerik.WinControls.Themes.TelerikMetroBlueTheme telerikMetroBlueTheme1;
     }
 }
 

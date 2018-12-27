@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.IO.Ports;
+using System.Diagnostics;
+using Telerik.WinControls.Enumerations;
 
 namespace Prueba_Bascula
 {
     public partial class Form1 : Form
     {
-
         private String Salto_Linea = "\n ";
+        private Stopwatch watch = new Stopwatch();
 
         /// <summary>
         /// 
@@ -36,6 +38,12 @@ namespace Prueba_Bascula
 
             try
             {
+                ProBar_Estatus.Visible = false;
+                ProBar_Estatus.ShowText = true;
+                ProBar_Estatus.WaitingSpeed = 10;
+                ProBar_Estatus.WaitingStyle = WaitingBarStyles.Dash;
+                ProBar_Estatus.Text = "Leyendo datos de la bascula";
+
                 Btn_Activar.Enabled = true;
                 Btn_Desactivar.Enabled = false;
 
@@ -57,6 +65,8 @@ namespace Prueba_Bascula
                 }
 
                 Lbl_Mensajes.Text += Salto_Linea + "Puerto configurado";
+
+
             }
             catch (Exception ex)
             {
@@ -147,23 +157,7 @@ namespace Prueba_Bascula
             }
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                Serial_Bascula.WriteLine("P");
-            }
-            catch (Exception ex)
-            {
-                Lbl_Mensajes.Text += Salto_Linea + ex.Message;
-                //throw new Exception("Error timer1_Tick [" + ex.Message + "]");
-            }
-        }
+      
 
         /// <summary>
         /// 
@@ -175,11 +169,22 @@ namespace Prueba_Bascula
             try
             {
                 Lbl_Mensajes.Text = "Activando lectura de la bascula";
+
+                watch = new Stopwatch();
+                watch.Start();
+                ProBar_Estatus.Visible = true;
+                ProBar_Estatus.ResetWaiting();
+                ProBar_Estatus.StartWaiting();
+                watch.Stop();
+
+
                 timer1.Enabled = true;
+                
 
                 Btn_Activar.Enabled = false;
                 Btn_Desactivar.Enabled = true;
                 Lbl_Mensajes.Text += Salto_Linea + "Lectura lista para usarse";
+
 
             }
             catch (Exception ex)
@@ -199,6 +204,12 @@ namespace Prueba_Bascula
                 Lbl_Mensajes.Text = "Cerrando lectura de la bascula";
                 timer1.Enabled = false;
 
+                watch = new Stopwatch();
+                watch.Start();
+                ProBar_Estatus.Visible = false;
+                ProBar_Estatus.StopWaiting();
+                watch.Stop();
+
                 Btn_Activar.Enabled = true;
                 Btn_Desactivar.Enabled = false;
                 Lbl_Mensajes.Text += Salto_Linea + "Lectura deshabilidada";
@@ -208,5 +219,28 @@ namespace Prueba_Bascula
                 throw new Exception("Error button2_Click_1 [" + ex.Message + "]");
             }
         }
+
+
+        #region Timer
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+               Serial_Bascula.WriteLine("P");
+            }
+            catch (Exception ex)
+            {
+                Lbl_Mensajes.Text += Salto_Linea + ex.Message;
+                //throw new Exception("Error timer1_Tick [" + ex.Message + "]");
+            }
+        }
+        #endregion
     }
 }
