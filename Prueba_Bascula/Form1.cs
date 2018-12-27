@@ -44,8 +44,9 @@ namespace Prueba_Bascula
                 ProBar_Estatus.WaitingStyle = WaitingBarStyles.Dash;
                 ProBar_Estatus.Text = "Leyendo datos de la bascula";
 
-                Btn_Activar.Enabled = true;
+                Btn_Activar.Enabled = false;
                 Btn_Desactivar.Enabled = false;
+                Btn_Pausa.Enabled = false;
 
                 Lbl_Mensajes.Text = "Configurando puerto";
 
@@ -66,6 +67,7 @@ namespace Prueba_Bascula
 
                 Lbl_Mensajes.Text += Salto_Linea + "Puerto configurado";
 
+                Btn_Activar.Enabled = true;
 
             }
             catch (Exception ex)
@@ -96,6 +98,7 @@ namespace Prueba_Bascula
                 Lectura_ = Lectura_.Replace("kg", "");
                 Lectura_ = Lectura_.TrimEnd().TrimStart();
 
+                Lbl_Mensajes.Text = Salto_Linea +  " ******Lectura   "  + Lectura_;
 
                 if ((Lectura_ == "NEG.")
                     || (Lectura_ == "N")
@@ -116,6 +119,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
+                Lbl_Mensajes.Text += Salto_Linea + "Error Serial_Bascula_DataReceived [" + ex.Message + "]";
                 throw new Exception("Error Serial_Bascula_DataReceived [" + ex.Message + "]");
             }
         }
@@ -182,6 +186,7 @@ namespace Prueba_Bascula
                 
 
                 Btn_Activar.Enabled = false;
+                Btn_Pausa.Enabled = true;
                 Btn_Desactivar.Enabled = true;
                 Lbl_Mensajes.Text += Salto_Linea + "Lectura lista para usarse";
 
@@ -192,6 +197,37 @@ namespace Prueba_Bascula
                 throw new Exception("Error button1_Click [" + ex.Message + "]");
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Pausa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                watch = new Stopwatch();
+                watch.Start();
+                ProBar_Estatus.Visible = true;
+                ProBar_Estatus.StopWaiting();
+                watch.Stop();
+
+
+                Btn_Activar.Enabled = true;
+                Btn_Pausa.Enabled = false;
+                Btn_Desactivar.Enabled = true;
+
+                timer1.Enabled = false;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error button1_Click [" + ex.Message + "]");
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -211,6 +247,7 @@ namespace Prueba_Bascula
                 watch.Stop();
 
                 Btn_Activar.Enabled = true;
+                Btn_Pausa.Enabled = false;
                 Btn_Desactivar.Enabled = false;
                 Lbl_Mensajes.Text += Salto_Linea + "Lectura deshabilidada";
             }
@@ -242,5 +279,7 @@ namespace Prueba_Bascula
             }
         }
         #endregion
+
+     
     }
 }
