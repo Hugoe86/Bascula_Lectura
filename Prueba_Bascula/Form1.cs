@@ -51,7 +51,7 @@ namespace Prueba_Bascula
                 Lbl_Mensajes.Text = "Configurando puerto";
 
 
-                Serial_Bascula.PortName = "COM4";
+                Serial_Bascula.PortName = "COM1";
                 Serial_Bascula.BaudRate = 9600;
                 Serial_Bascula.DataBits = 8;
                 Serial_Bascula.Parity = Parity.None;
@@ -120,7 +120,7 @@ namespace Prueba_Bascula
             catch (Exception ex)
             {
                 Lbl_Mensajes.Text += Salto_Linea + "Error Serial_Bascula_DataReceived [" + ex.Message + "]";
-                throw new Exception("Error Serial_Bascula_DataReceived [" + ex.Message + "]");
+                //throw new Exception("Error Serial_Bascula_DataReceived [" + ex.Message + "]");
             }
         }
         /// <summary>
@@ -139,7 +139,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
-                throw new Exception("Error Form1_FormClosing [" + ex.Message + "]");
+                //throw new Exception("Error Form1_FormClosing [" + ex.Message + "]");
             }
         }
 
@@ -157,7 +157,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
-                throw new Exception("Error Serial_Bascula_ErrorReceived  [" + ex.Message + "]");
+                //throw new Exception("Error Serial_Bascula_ErrorReceived  [" + ex.Message + "]");
             }
 
         }
@@ -194,7 +194,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
-                throw new Exception("Error button1_Click [" + ex.Message + "]");
+                //throw new Exception("Error button1_Click [" + ex.Message + "]");
             }
         }
 
@@ -224,7 +224,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
-                throw new Exception("Error button1_Click [" + ex.Message + "]");
+                //throw new Exception("Error button1_Click [" + ex.Message + "]");
             }
         }
 
@@ -253,7 +253,7 @@ namespace Prueba_Bascula
             }
             catch (Exception ex)
             {
-                throw new Exception("Error button2_Click_1 [" + ex.Message + "]");
+                //throw new Exception("Error button2_Click_1 [" + ex.Message + "]");
             }
         }
 

@@ -34,6 +34,8 @@
             this.Lbl_Mensajes = new Telerik.WinControls.UI.RadRichTextEditor();
             this.Table_Botones = new System.Windows.Forms.TableLayoutPanel();
             this.Btn_Pausa = new Telerik.WinControls.UI.RadButton();
+            this.Btn_Activar = new Telerik.WinControls.UI.RadButton();
+            this.Btn_Desactivar = new Telerik.WinControls.UI.RadButton();
             this.Tabla_Texto = new System.Windows.Forms.TableLayoutPanel();
             this.Txt_Datos_Bascula = new System.Windows.Forms.TextBox();
             this.ProBar_Estatus = new Telerik.WinControls.UI.RadWaitingBar();
@@ -41,16 +43,14 @@
             this.telerikMetroBlueTheme1 = new Telerik.WinControls.Themes.TelerikMetroBlueTheme();
             this.desertTheme1 = new Telerik.WinControls.Themes.DesertTheme();
             this.aquaTheme1 = new Telerik.WinControls.Themes.AquaTheme();
-            this.Btn_Activar = new Telerik.WinControls.UI.RadButton();
-            this.Btn_Desactivar = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Lbl_Mensajes)).BeginInit();
             this.Table_Botones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Pausa)).BeginInit();
-            this.Tabla_Texto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProBar_Estatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Activar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Desactivar)).BeginInit();
+            this.Tabla_Texto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProBar_Estatus)).BeginInit();
             this.SuspendLayout();
             // 
             // Serial_Bascula
@@ -122,6 +122,36 @@
             this.Btn_Pausa.ThemeName = "Aqua";
             this.Btn_Pausa.Click += new System.EventHandler(this.Btn_Pausa_Click);
             // 
+            // Btn_Activar
+            // 
+            this.Btn_Activar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Btn_Activar.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Activar.Image = global::Prueba_Bascula.Properties.Resources.img_vigente;
+            this.Btn_Activar.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.Btn_Activar.Location = new System.Drawing.Point(3, 3);
+            this.Btn_Activar.Name = "Btn_Activar";
+            this.Btn_Activar.Size = new System.Drawing.Size(246, 60);
+            this.Btn_Activar.TabIndex = 8;
+            this.Btn_Activar.Text = "Activar";
+            this.Btn_Activar.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_Activar.ThemeName = "Aqua";
+            this.Btn_Activar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Btn_Desactivar
+            // 
+            this.Btn_Desactivar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Btn_Desactivar.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Desactivar.Image = global::Prueba_Bascula.Properties.Resources.img_sin_alta;
+            this.Btn_Desactivar.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.Btn_Desactivar.Location = new System.Drawing.Point(3, 135);
+            this.Btn_Desactivar.Name = "Btn_Desactivar";
+            this.Btn_Desactivar.Size = new System.Drawing.Size(246, 62);
+            this.Btn_Desactivar.TabIndex = 9;
+            this.Btn_Desactivar.Text = "Desactivar";
+            this.Btn_Desactivar.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_Desactivar.ThemeName = "Aqua";
+            this.Btn_Desactivar.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Tabla_Texto
             // 
             this.Tabla_Texto.ColumnCount = 1;
@@ -166,36 +196,6 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Btn_Activar
-            // 
-            this.Btn_Activar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Activar.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Activar.Image = global::Prueba_Bascula.Properties.Resources.img_vigente;
-            this.Btn_Activar.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.Btn_Activar.Location = new System.Drawing.Point(3, 3);
-            this.Btn_Activar.Name = "Btn_Activar";
-            this.Btn_Activar.Size = new System.Drawing.Size(246, 60);
-            this.Btn_Activar.TabIndex = 8;
-            this.Btn_Activar.Text = "Activar";
-            this.Btn_Activar.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Activar.ThemeName = "Aqua";
-            this.Btn_Activar.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Btn_Desactivar
-            // 
-            this.Btn_Desactivar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Desactivar.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Desactivar.Image = global::Prueba_Bascula.Properties.Resources.img_sin_alta;
-            this.Btn_Desactivar.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.Btn_Desactivar.Location = new System.Drawing.Point(3, 135);
-            this.Btn_Desactivar.Name = "Btn_Desactivar";
-            this.Btn_Desactivar.Size = new System.Drawing.Size(246, 62);
-            this.Btn_Desactivar.TabIndex = 9;
-            this.Btn_Desactivar.Text = "Desactivar";
-            this.Btn_Desactivar.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Desactivar.ThemeName = "Aqua";
-            this.Btn_Desactivar.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,11 +210,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Lbl_Mensajes)).EndInit();
             this.Table_Botones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Pausa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Activar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Desactivar)).EndInit();
             this.Tabla_Texto.ResumeLayout(false);
             this.Tabla_Texto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProBar_Estatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Activar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Desactivar)).EndInit();
             this.ResumeLayout(false);
 
         }
